@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lms-be
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lms-be
+  template:
+    metadata:
+      labels:
+        app: lms-be
+    spec:
+      containers:
+        - name: backend-container
+          image: {{ .Values.backend.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.backend.port }}
+          envFrom:
+            - configMapRef:
+                name: backend-config-map
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgres.secretName }}
+                  key: password
