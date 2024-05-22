@@ -1,4 +1,4 @@
-apiVersion: apps/v1d123
+apiVersion: apps/v1d
 kind: Deployment
 metadata:
   name: lms-be
