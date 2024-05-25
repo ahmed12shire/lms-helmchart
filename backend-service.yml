@@ -3,8 +3,10 @@ kind: Service
 metadata:
   name: lms-be-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: {{ .Values.backend.port }}
+    targetPort: {{ .Values.backend.targetPort }}
+    nodePort: {{ .Values.backend.nodePort }}
   selector:
     app: lms-be

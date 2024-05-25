@@ -3,8 +3,10 @@ kind: Service
 metadata:
   name: lms-fe-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: {{ .Values.frontend.port }}
+    targetPort: {{ .Values.frontend.targetPort }}
+    nodePort: {{ .Values.frontend.nodePort }}
   selector:
     app: lms-fe

@@ -1,17 +1,14 @@
-postgres:
-  secretName: postgres-secret
-  password: QXoxMjM0NTY=
 backend:
   image: ahmed12shire/lmsbe1
   port: 8080
-  dbHost: postgres-cluster-ip-service
-  dbPort: 5432
-  dbUser: postgres
-  dbName: postgres
+  targetPort: 8080
+  nodePort: 30007
   mode: production
 frontend:
   image: ahmed12shire/lmsfe2
   port: 80
+  targetPort: 80
+  nodePort: 30008
 configmap:
-  name: my-configmap-name
-  namespace: my-namespace-name
+  name: backend-configmap
+  namespace: default
